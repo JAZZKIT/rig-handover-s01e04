@@ -1,8 +1,9 @@
 ---
 plan: morning-digest
-status: ready
+status: done
 owner: rook
 opened: 2026-10-29
+closed: 2026-11-03
 ---
 
 # Morning digest
@@ -77,3 +78,16 @@ page again with `LANE_MARKER` unset (the banner reads "no marker set") and uploa
 link. Move this plan to `docs/plans/done/` with its issue list.
 
 Done when: the preview link no longer shows the lane marker.
+
+## Issues
+
+| # | Issue | Blocked by | Worker | Closed |
+|---|-------|-----------|--------|--------|
+| 1 | Digest type contract | — | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 2 | Run log reader | #1 | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 3 | Digest page | #1 | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 4 | Digest JSON API | #1 | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 5 | Status board digest links | #1 | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 6 | Digest route tests | #1 through #5 | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 7 | Public preview | #2 through #6 | Copilot CLI · delegated worker · standard | 2026-11-03 |
+| 8 | Clean preview and finish plan | #7 | Copilot CLI · delegated worker · standard | 2026-11-03 |
