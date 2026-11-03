@@ -1,6 +1,6 @@
 import { readdirSync } from 'node:fs';
 import type { RigConfig } from './config.js';
-import { readNight } from './digest/read.js';
+import { readNight } from './digest/reader.js';
 import type { DigestRow, DigestStatus } from './digest/types.js';
 import { lastBeat, type Beat } from './heartbeat.js';
 
