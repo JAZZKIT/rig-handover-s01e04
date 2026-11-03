@@ -1,9 +1,10 @@
+import { sortDigestRows } from '../digest/reader.js';
 import type { DigestRow } from '../digest/types.js';
 
 const columns = ['job', 'owner', 'runs', 'retries', 'last status', 'last error', 'first at', 'last at'];
 
 export function DigestPage({ night, rows }: { night: string; rows: DigestRow[] }) {
-  const sortedRows = [...rows].sort((a, b) => a.job.localeCompare(b.job));
+  const sortedRows = sortDigestRows(rows);
 
   return (
     <>

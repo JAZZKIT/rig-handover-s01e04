@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { loadConfig, type RigConfig } from './config.js';
-import { readNight } from './digest/reader.js';
+import { readNight, sortDigestRows } from './digest/reader.js';
 import { lane } from './lane.js';
 import { nightsOnDisk, readStatus } from './status.js';
 import { Layout } from './views/layout.js';
@@ -19,7 +19,7 @@ export function createApp(config: RigConfig = loadConfig()) {
   app.get('/api/digest/:night', (c) => {
     const night = c.req.param('night');
     if (!nightsOnDisk(config.runsDir).includes(night)) return c.notFound();
-    return c.json(readNight(config.runsDir, night));
+    return c.json(sortDigestRows(readNight(config.runsDir, night)));
   });
 
   app.get('/', (c) =>

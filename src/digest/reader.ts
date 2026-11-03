@@ -93,3 +93,7 @@ export function readNight(runsDir: string, night: string): DigestRow[] {
 
   return rows;
 }
+
+export function sortDigestRows(rows: DigestRow[]): DigestRow[] {
+  return [...rows].sort((a, b) => a.job.localeCompare(b.job));
+}
