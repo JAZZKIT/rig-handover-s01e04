@@ -1,11 +1,11 @@
 import { Hono } from 'hono';
 import { loadConfig, type RigConfig } from './config.js';
-import { readNight } from './digest/read.js';
+import { readNight } from './digest/reader.js';
 import { lane } from './lane.js';
-import { readStatus } from './status.js';
-import { DigestPage } from './views/digest.js';
+import { nightsOnDisk, readStatus } from './status.js';
 import { Layout } from './views/layout.js';
 import { StatusBoard } from './views/status.js';
+import { DigestPage } from './views/digest.js';
 
 function isMissingFile(error: unknown): boolean {
   return typeof error === 'object' && error !== null && 'code' in error && error.code === 'ENOENT';
@@ -15,6 +15,12 @@ export function createApp(config: RigConfig = loadConfig()) {
   const app = new Hono();
 
   app.get('/health', (c) => c.json({ ok: true, lane: lane().id }));
+
+  app.get('/api/digest/:night', (c) => {
+    const night = c.req.param('night');
+    if (!nightsOnDisk(config.runsDir).includes(night)) return c.notFound();
+    return c.json(readNight(config.runsDir, night));
+  });
 
   app.get('/', (c) =>
     c.html(
